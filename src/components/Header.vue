@@ -13,7 +13,9 @@
           v-model="searchTitle"
           @keyup.enter="$emit('search', searchTitle)"
         />
-        <button class="btn btn-success">click</button>
+        <button class="btn btn-success" @click="$emit('search', searchTitle)">
+          Search
+        </button>
       </div>
     </section>
   </header>
@@ -22,6 +24,7 @@
 <script>
 export default {
   name: "indexHeader",
+  props: ["cardElement"],
   data: function () {
     return {
       searchTitle: "",
@@ -39,6 +42,6 @@ img {
   width: 50px;
 }
 div .input-group {
-  width: 20%;
+  width: 40%;
 }
 </style>
