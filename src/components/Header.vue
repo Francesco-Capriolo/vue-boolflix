@@ -1,9 +1,8 @@
 <template>
-  <header class="container-fluid">
+  <header class="container-fluid mb-3">
     <section class="row justify-content-between align-items-center">
       <div class="col-2">
         <img src="../assets/img/netflixlogo.jpg" alt="netflix logo" />
-        <span class="text-white">{{ searchTitle }}</span>
       </div>
       <div class="input-group input-group-sm col-5">
         <span class="input-group-text">Search Title</span>
@@ -13,7 +12,10 @@
           v-model="searchTitle"
           @keyup.enter="$emit('search', searchTitle)"
         />
-        <button class="btn btn-success" @click="$emit('search', searchTitle)">
+        <button
+          class="btn btn-outline-light"
+          @click="$emit('search', searchTitle)"
+        >
           Search
         </button>
       </div>
@@ -43,5 +45,8 @@ img {
 }
 div .input-group {
   width: 40%;
+}
+.input-group-text {
+  background-color: rgb(127, 133, 133);
 }
 </style>

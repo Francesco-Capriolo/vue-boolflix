@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @search="listTitle" />
+    <Header @search="newSearch" />
     <Main :films="films" />
   </div>
 </template>
@@ -18,21 +18,44 @@ export default {
   },
   data: function () {
     return {
-      films: "",
+      films: [],
+      series: [],
+      filmsSeries: [],
+      apiUrl: "https://api.themoviedb.org/3/search/",
+      apiKey: "?api_key=95726d0bcf22976ad19620a973156f8c&query=",
+      filmSearch: "",
     };
   },
   created: function () {},
   methods: {
-    listTitle(stringToSearch) {
+    newSearch(stringToSearch) {
+      this.filmSearch = stringToSearch;
+      this.listMovie();
+    },
+
+    listMovie() {
       axios
-        .get(
-          `https://api.themoviedb.org/3/search/movie?api_key=95726d0bcf22976ad19620a973156f8c&query=${stringToSearch}`
-        )
+        .get(this.apiUrl + "movie" + this.apiKey + this.filmSearch)
         .then((result) => {
           this.films = result.data.results;
-          console.log(result.data);
+          this.filmsSeries = [...this.films, ...this.series];
+          console.table(result.data.results);
         })
         .catch((error) => {
+          console.log(this.films);
+          console.error(error);
+        });
+    },
+    listSeries() {
+      axios
+        .get(this.apiUrl + "tv" + this.apiKey + this.filmSearch)
+        .then((result) => {
+          this.series = result.data.results;
+          this.filmsSeries = [...this.films, ...this.series];
+          console.log(result.data.results);
+        })
+        .catch((error) => {
+          console.warn(this.series);
           console.error(error);
         });
     },
@@ -47,7 +70,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>

@@ -1,10 +1,18 @@
 <template>
-  <main>
-    <Card
-      v-for="(element, index) in films"
-      :key="index"
-      :cardElement="element"
-    />
+  <main class="container-fluid">
+    <div
+      class="
+        row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5
+        g-4
+        mb-3
+      "
+    >
+      <Card
+        v-for="(element, index) in films"
+        :key="index"
+        :cardElement="element"
+      />
+    </div>
   </main>
 </template>
 
@@ -28,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
+main {
   margin: 0 auto;
   width: 80%;
   overflow: hidden;
