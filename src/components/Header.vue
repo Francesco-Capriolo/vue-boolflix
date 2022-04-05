@@ -10,7 +10,7 @@
           type="text"
           class="form-control me-1"
           v-model="searchTitle"
-          @keyup.enter="$emit('search', searchTitle)"
+          @keyup="$emit('search', searchTitle)"
         />
         <button
           class="btn btn-outline-light"
