@@ -2,7 +2,7 @@
   <div id="app">
     <Header @search="newSearch" />
 
-    <Main :films="films" />
+    <Main :films="filmsSeries" />
   </div>
 </template>
 
@@ -28,12 +28,11 @@ export default {
     };
   },
   created: function () {
-    this.newSearch("mission impossible");
+    this.newSearch("0");
   },
   methods: {
     newSearch(stringToSearch) {
       this.filmSearch = stringToSearch;
-
       this.listSeries();
       this.listMovie();
     },

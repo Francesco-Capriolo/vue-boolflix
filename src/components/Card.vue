@@ -10,71 +10,29 @@
           v-if="elementVisible"
           :src="'http://image.tmdb.org/t/p/w342/' + cardElement.poster_path"
           class="card-img img-fluid"
-          :alt="cardElement.title"
+          :alt="cardElement.title || cardElement.original_name"
         />
         <div v-else class="card-body">
-          <h5 class="card-title"><b>Titolo:</b>{{ cardElement.title }}</h5>
+          <h5 class="card-title">
+            <b>Titolo: </b>{{ cardElement.title }} {{ cardElement.name }}
+          </h5>
           <p class="card-text">
-            <b>Titolo Originale:</b>{{ cardElement.original_title }}
+            <b>Titolo Originale: </b>{{ cardElement.original_title }}
+            {{ cardElement.original_name }}
           </p>
-          <p
-            class="card-text"
-            v-if="cardElement.vote_average > 1 && cardElement.vote_average <= 2"
-          >
-            <b>voto:</b>{{ cardElement.vote_average }}
-            <font-awesome-icon icon="fa-solid fa-star" />
+          <p class="card-text">
+            <b>voto: </b>
+            <span
+              v-for="n in Math.round(cardElement.vote_average / 2)"
+              :key="n"
+            >
+              <font-awesome-icon icon="fa-solid fa-star" />
+            </span>
+            <span> {{ cardElement.vote_average }}</span>
           </p>
-          <p
-            class="card-text"
-            v-else-if="
-              cardElement.vote_average > 2 && cardElement.vote_average <= 4
-            "
-          >
-            <b>voto:</b>{{ cardElement.vote_average }}
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-          </p>
-          <p
-            class="card-text"
-            v-else-if="
-              cardElement.vote_average > 4 && cardElement.vote_average <= 6
-            "
-          >
-            <b>voto:</b>{{ cardElement.vote_average }}
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-          </p>
-          <p
-            class="card-text"
-            v-else-if="
-              cardElement.vote_average > 6 && cardElement.vote_average <= 8
-            "
-          >
-            <b>voto:</b>{{ cardElement.vote_average }}
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-          </p>
-          <p class="card-text" v-else>
-            <b>voto:</b>{{ cardElement.vote_average }}
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-            <font-awesome-icon icon="fa-solid fa-star" />
-          </p>
-          <country-flag
-            :v-if="
-              cardElement.original_language === 'en'
-                ? 'cardElement.original_language = eh'
-                : 'cardElement.original_language'
-            "
-            :country="cardElement.original_language"
-          />
+          <country-flag :country="cardElement.original_language" />
           <div class="card-over">
-            <p class="card-info"><b>Overview:</b>{{ cardElement.overview }}</p>
+            <p class="card-info"><b>Overview: </b>{{ cardElement.overview }}</p>
           </div>
         </div>
       </div>
@@ -91,11 +49,7 @@ export default {
       elementVisible: "false",
     };
   },
-  methods: {
-    isVisible() {
-      this.elementVisible = !this.elementVisible;
-    },
-  },
+  methods: {},
 };
 </script>
 
