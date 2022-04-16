@@ -1,10 +1,10 @@
 <template>
   <header class="container-fluid mb-3">
-    <section class="row justify-content-between align-items-center">
+    <section class="row justify-content-md-between align-items-center">
       <div class="col-2">
         <img src="../assets/img/netflixlogo.jpg" alt="netflix logo" />
       </div>
-      <div class="input-group input-group-sm col-5">
+      <div class="input-group input-group-sm col-10 col-lg-5">
         <span class="input-group-text">Search Title</span>
         <input
           type="text"
@@ -44,9 +44,16 @@ img {
   width: 50px;
 }
 div .input-group {
-  width: 40%;
+  width: 30%;
+  flex-wrap: nowrap;
+  input {
+    min-width: 100px;
+  }
 }
 .input-group-text {
   background-color: rgb(127, 133, 133);
+}
+button:hover {
+  color: red;
 }
 </style>

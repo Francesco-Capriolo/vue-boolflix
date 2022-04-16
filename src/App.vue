@@ -28,7 +28,7 @@ export default {
     };
   },
   created: function () {
-    this.newSearch("0");
+    this.newSearch("a");
   },
   methods: {
     newSearch(stringToSearch) {
@@ -69,6 +69,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/style/style.scss";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

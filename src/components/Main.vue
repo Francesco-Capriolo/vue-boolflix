@@ -38,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 main {
   margin: 0 auto;
-  width: 75%;
+  width: 80%;
   overflow: hidden;
 }
 </style>
